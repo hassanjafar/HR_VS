@@ -1,0 +1,279 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Document</title>
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" type="text/css">
+      <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+      <link href="{% static 'vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" type="text/css">
+      <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    
+      <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+      <link rel="stylesheet" href="{% static 'vendor/datatables/jquery.dataTables.css ' %}">
+       <link rel="stylesheet" href="{% static 'vendor/datatables/jquery.dataTables.min.css' %}">
+  
+</head>
+<body>
+    <nav  class="navbar navbar-expand-lg navbar-dark bg-info" >
+        <a class="navbar-brand" href="#">Villa Somalia</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link " href="#">ID Checking System <span class="sr-only">(current)</span></a>
+            </li>
+            
+          </ul>
+          
+        </div>
+      </nav>
+       <br/>
+       
+       <div class="container">
+       
+      </div>
+      
+
+      <!-- <button class="btn btn-danger">test</button> -->
+
+      <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+      <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    
+      <!-- Core plugin JavaScript-->
+      <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    
+      <!-- Custom scripts for all pages-->
+      <script src="{% static 'js1/sb-admin-2.min.js' %}"></script>
+    
+      <!-- Page level plugins -->
+     
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+      <script src="{% static 'vendor/jquery/jsfile.js' %}"></script>
+      <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+      
+      <script>
+        $(document).ready(function () {
+          // console.log("jquery working ")
+          $('#dataTexampleables').dataTable()
+
+          window.setInterval(function () {
+            console.log("1")
+            $.ajax({
+              //method:'POST',
+              url: '/gatetwores/',
+              //   cache:false,
+              //   contentType: false,
+              //   processData: false,
+              //   data:formData,
+              success: function (response) {
+
+                //alert(response.query)
+                obj = JSON.parse(response.query)
+
+                // alert(obj[0].id)
+
+                //alert(response.query.model)
+                if (obj==''){
+                          
+                    $('.container').html(`
+
+                        <div class="card" style="max-width: 68rem;">
+                        <div class="row no-gutters">
+                            <div class="col-lg-6">
+                            <img src="/images/images/media/unknown.png" height="400px" class="card-img" alt="...">
+                            </div>
+                            <div class="col-lg-6">
+                            <div class="card-body">
+                                <h5 class="card-title" style="font-size:24px; color:#000; text-align: center;  text-decoration: underline; font-weight:bold"  ><b>Xogta  Aqoonsiga Qofka</b></h5>
+                                <p class="card-text">
+
+                                    <table class="table" style="float:right;font-size:24px; color:#000; font-weight:bold" >
+                                              <tr>
+                                                    <td colspan='4' style="font-size:20px;font-weight:bold"><b>ID Card </b>:</td>
+                                                    <td colspan='10' style="float:right;font-size:20px" ><b >Ma Jiro</b></td>
+                                            </tr>
+                                                <tr>
+                                                    <td colspan='4' style="font-size:20px;font-weight:bold" ><b>Macagac</b>:</td>
+                                                    <td colspan='10' style="float:right"><b >Ma Jiro</b></td>
+                                                </tr>
+                                            <tr>
+                                                <td colspan='4' > <b>Waaxda</b>:</td>
+                                                <td colspan='10' style="float:right"><b>Ma Jiro</b></td>
+                                            </tr>
+                                            <tr>
+                                                    <td colspan='4'><b>Xilka</b>:</td>
+                                                    <td colspan='10' style="float:right"><b>Ma Jiro</b></td>
+                                            </tr>
+                                    </table>
+                                    <p style="color:red;position:relative;padding-left:40%;" class="fas fa-times fa-6x"></p>
+                                    </p>
+                                </p>
+                                
+                                
+                                <p  class="card-text"> </p>
+                                
+                                <p  class="card-text"></p>
+
+                                <p  class="card-text"> </p>
+                                
+                                <p  class="card-text"></p>
+                                <p  class="card-text"> </p>
+                                
+                                <p  class="card-text"></p>
+                                <p  class="card-text"> </p>
+                                
+                                <p  class="card-text"></p>
+                                <p  class="card-text"> </p>
+                                
+                                <p  class="card-text"></p>
+                                <p  class="card-text"> </p>
+                                
+                                <p  class="card-text"></p>
+
+                                <p  class="card-text"> </p>
+                                
+                                <p  class="card-text"></p>
+                                <p  class="card-text"> </p>
+                                
+                                <p  class="card-text"></p>
+                                <p  class="card-text"> </p>
+                                
+                                <p  class="card-text"></p>
+                                <p  class="card-text"> </p>
+                                
+                                <p  class="card-text"></p>
+                                </p>
+                                
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+
+
+
+       
+        
+        `)
+
+
+
+
+                          
+                }
+                else {
+                $('.container').html(`
+
+                <div class="card" style="max-width:100%;">
+                <div class="row no-gutters">
+                    <div class="col-lg-5">
+                    <img src="/images/`+ obj[0].image + `"" height="400px" class="card-img" alt="...">
+                    </div>
+                    <div class="col-lg-7">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-size:24px; color:#000; text-align: center;  text-decoration: underline; font-weight:bold"  ><b>Xogta  Aqoonsiga Qofka</b></h5>
+                        <p class="card-text">
+
+                            <table class="table" style="float:right;font-size:24px; color:#000; font-weight:bold" >
+                                      <tr>
+                                            <td colspan='4' style="font-size:20px;font-weight:bold"><b>Tir. Aqonisga: </b></td>
+                                            <td colspan='10' style="float:right;font-size:20px" ><b >`+ obj[0].ID_CARD + `</b></td>
+                                    </tr>
+                                        <tr>
+                                            <td colspan='4' style="font-size:20px;font-weight:bold" ><b>Magaca</b>:</td>
+                                            <td colspan='10' style="float:right"><b >`+ obj[0].firstName + ` ` + obj[0].lastName + `</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan='4' style="font-size:20px;font-weight:bold" ><b>Xafiiska</b>:</td>
+                                            <td colspan='10' style="float:right"><b >`+ obj[0].office__office_name+ `</b></td>
+                                        </tr>
+
+                                    <tr>
+                                        <td colspan='4' > <b>Waaxda</b>:</td>
+                                        <td colspan='10' style="float:right"><b>`+ obj[0].deptment__deptName + `</b></td>
+                                    </tr>
+                                    <tr>
+                                            <td colspan='4'><b>Xilka</b>:</td>
+                                            <td colspan='10' style="float:right"><b>`+ obj[0].position__titleName + `</b></td>
+                                    </tr>
+                                    <tr>
+                                            <td colspan='4'><b>Tar. uu Dhacayo</b>:</td>
+                                            <td colspan='10' style="float:right"><b>`+ obj[0].date+ `</b></td>
+                                    </tr>
+                                    
+                            </table>
+                            <p style="color:green;position:relative;padding-left:40%;" class="fas fa-check fa-6x"></p>
+                            </p>
+                        </p>
+                        
+                        
+                        <p  class="card-text"> </p>
+                        
+                        <p  class="card-text"></p>
+
+                        <p  class="card-text"> </p>
+                        
+                        <p  class="card-text"></p>
+                        <p  class="card-text"> </p>
+                        
+                        <p  class="card-text"></p>
+                        <p  class="card-text"> </p>
+                        
+                        <p  class="card-text"></p>
+                        <p  class="card-text"> </p>
+                        
+                        <p  class="card-text"></p>
+                        <p  class="card-text"> </p>
+                        
+                        <p  class="card-text"></p>
+
+                        <p  class="card-text"> </p>
+                        
+                        <p  class="card-text"></p>
+                        <p  class="card-text"> </p>
+                        
+                        <p  class="card-text"></p>
+                        <p  class="card-text"> </p>
+                        
+                        <p  class="card-text"></p>
+                        <p  class="card-text"> </p>
+                        
+                        <p  class="card-text"></p>
+                        </p>
+                        
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+
+      
+                       
+                        
+                        `)
+                }
+
+              }
+
+
+            })
+          }, 5000);
+
+
+        })
+
+      </script>
+</body>
+</html>

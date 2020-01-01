@@ -1,0 +1,7 @@
+*.pyc
+*~
+--pycache--
+ll_env
+db.sqlite3
+.DS_Store
+migrations
