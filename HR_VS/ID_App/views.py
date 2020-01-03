@@ -50,20 +50,27 @@ def dash_report(request):
             
             
             if var > 0:
+                print("if near online block", var)
+                conn.get_users()
+                conn.get_attendance()
                 dev.id=var
                 dev.ip_address=str(zk._ZK__address)
                 dev.mac_address=str(zk.get_mac())
                 dev.serial_number=str(zk.get_serialnumber())
-                dev.user_count=str(zk.users)
-                dev.record_count=str(zk.records)
+                dev.user_count=str(conn.users)
+                dev.record_count=str(conn.records)
+                
                 dev.status="online"
                 dev.save()
             else:
+                print("else near online block")
+                conn.get_users()
+                conn.get_attendance()
                 dev.ip_address=str(zk._ZK__address)
                 dev.mac_address=str(zk.get_mac())
                 dev.serial_number=str(zk.get_serialnumber())
-                dev.user_count=str(zk.users)
-                dev.record_count=str(zk.records)
+                dev.user_count=str(conn.users)
+                dev.record_count=str(conn.records)
                 dev.status="online"
                 dev.save()
                 print(zk)
@@ -120,9 +127,10 @@ def dash_report(request):
                             obj.time=time_val
                                 
                             obj.save()       
-    # except:
-            if var > 0:
+    # except:  double check validity of this condition
+            if var < 0:
                 print("not reached here")
+          
                 for i in q:
                     dev.id=i['id']
                     dev.ip_address=i['ip_address']
@@ -132,9 +140,10 @@ def dash_report(request):
                     dev.record_count=i['user_count']
                     dev.status="offline"
                     dev.save()
+                    
                 
             
-            print("network erro")
+            
         else:
             att=conn.get_attendance()
             for i in att:
@@ -144,6 +153,16 @@ def dash_report(request):
                 obj.save()
         # print("we are here")
     except:
+        if zk.is_connect==False:
+            for i in q:
+                    dev.id=i['id']
+                    dev.ip_address=i['ip_address']
+                    dev.mac_address=i['mac_address']
+                    dev.serial_number=i['serial_number']
+                    dev.user_count=i['user_count']
+                    dev.record_count=i['user_count']
+                    dev.status="offline"
+                    dev.save()
         print("network error")
     
     

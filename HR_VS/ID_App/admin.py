@@ -10,6 +10,20 @@ from zk import ZK, const
 # @admin.register(Department)
 # class DepartmentAdmin1(ImportExportModelAdmin):
 #       pass
+def clear_data(modeladmin, request, queryset):
+    zk=ZK('192.168.8.101', port=4370, timeout=5, password=0, force_udp=False, ommit_ping=False)
+    conn = zk.connect()
+    conn.clear_attendance()
+    dev=Device()
+    for i in queryset:
+                    dev.id=i.id
+                    dev.ip_address=i.ip_address
+                    dev.mac_address=i.mac_address
+                    dev.serial_number=i.serial_number
+                    dev.user_count=i.user_count
+                    dev.record_count='0'
+                    dev.status="online"
+                    dev.save()
 
 def save_to_device(modeladmin, request, queryset):
     zk=ZK('192.168.8.101', port=4370, timeout=5, password=0, force_udp=False, ommit_ping=False)
@@ -86,6 +100,7 @@ class DeviceAdmin(admin.ModelAdmin):
         'record_count',
         'status',
      )
+     actions=[clear_data]
 
 class PersonnelAdmin(ImportExportModelAdmin):
 

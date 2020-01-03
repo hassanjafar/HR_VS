@@ -54,7 +54,7 @@ class Device(models.Model):
    # card_count=models.CharField(max_length=200)
     user_count=models.CharField(max_length=200)
     record_count=models.CharField(max_length=200)
-    status=models.CharField(max_length=200, default='offline')
+    status=models.CharField(max_length=200)
 class NCRI(models.Model):
     personnelNo=models.CharField(max_length=200, null=True)
     fistName=models.CharField(max_length=200)
