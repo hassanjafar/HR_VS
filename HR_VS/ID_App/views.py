@@ -38,7 +38,7 @@ def dash_report(request):
     for i in q:
         var=i['id']
     try:
-        zk=ZK('192.168.8.101', port=4370, timeout=5, password=0, force_udp=False, ommit_ping=False)
+        zk=ZK('192.168.8.100', port=4370, timeout=5, password=0, force_udp=False, ommit_ping=False)
         print(zk)
         dev=Device()
         conn = zk.connect()
@@ -194,14 +194,25 @@ def gatetwo(request):
     #     pass
     # else:
     data=dict()
-    
-    zk=ZK('192.168.8.101', port=4370, timeout=5, password=0, force_udp=False, ommit_ping=False)
+    val=''
+    no=0
+    zk=ZK('192.168.8.100', port=4370, timeout=5, password=0, force_udp=False, ommit_ping=False)
     conn = zk.connect()
 
     att=conn.get_attendance()
     #print("lists displayed  ==",att[38:])
-    val=att[-1]
-    no=val.user_id
+    for att in conn.live_capture():
+        if att is None:
+             print("not found")
+             no=-1
+             break
+        else:
+            print("found",att.user_id)
+            no=att.user_id
+            break
+
+    
+   
     users=conn.get_users()
     ##print(users[1].name)
     query_res= Personnel.objects.filter(id=no).values('id','firstName','lastName','image',

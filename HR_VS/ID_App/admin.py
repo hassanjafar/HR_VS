@@ -11,7 +11,7 @@ from zk import ZK, const
 # class DepartmentAdmin1(ImportExportModelAdmin):
 #       pass
 def clear_data(modeladmin, request, queryset):
-    zk=ZK('192.168.8.101', port=4370, timeout=5, password=0, force_udp=False, ommit_ping=False)
+    zk=ZK('192.168.8.100', port=4370, timeout=5, password=0, force_udp=False, ommit_ping=False)
     conn = zk.connect()
     conn.clear_attendance()
     dev=Device()
@@ -26,7 +26,7 @@ def clear_data(modeladmin, request, queryset):
                     dev.save()
 
 def save_to_device(modeladmin, request, queryset):
-    zk=ZK('192.168.8.101', port=4370, timeout=5, password=0, force_udp=False, ommit_ping=False)
+    zk=ZK('192.168.8.100', port=4370, timeout=5, password=0, force_udp=False, ommit_ping=False)
     conn = zk.connect()
     for q in queryset:
         print("Q",q.card_No)
@@ -35,7 +35,7 @@ def save_to_device(modeladmin, request, queryset):
         print(type(user_))
         name=q.firstName+" "+q.lastName
         cardNO=q.card_No
-        conn.set_user(uid, name=name, privilege='User', password='12345678', group_id='', user_id=str(uid), card=cardNO)
+        conn.set_user(uid, name=name, privilege='User', password='123', group_id='', user_id=str(uid), card=cardNO)
         #encode(user_,'utf-8')
 
         
@@ -48,7 +48,7 @@ admin.site.site_header = 'VILLA SOMALIA'                    # default: "Django A
 admin.site.index_title = 'ID CHECKING APP'                 # default: "Site administration"
 admin.site.site_title = 'ID Checking Application'
 
-class DepartmentAdmin(admin.ModelAdmin):
+class DepartmentAdmin(ImportExportModelAdmin):
     search_fields=['deptName']
     list_display=('id','deptName')
     actions=[save_to_device,]
@@ -126,6 +126,9 @@ class PersonnelAdmin(ImportExportModelAdmin):
 
     pass
 class PositionAdmin(ImportExportModelAdmin):
+    search_fields=['titleName']
+    list_display=('id','titleName','date')
+
    
     class Meta:
      model=Position
