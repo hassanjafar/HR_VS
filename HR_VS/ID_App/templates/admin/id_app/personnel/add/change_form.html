@@ -1,0 +1,40 @@
+{% extends 'admin/change_form.html' %}
+{% load static %}
+
+{% block object-tools %}
+
+    {% csrf_token %}
+
+      
+{{block.super}}
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>    
+<script>
+ $(document).ready(function(){
+    function filePreview(input) {
+                    if (input.files && input.files[0]) {
+                     // alert("some")
+                     
+                      var reader = new FileReader();
+                      reader.onload = function (e) {
+                          console.log(e.target.result)
+                         // $('#img').remove();
+                         
+                          $('.field-image').append('<img id="img" src="'+e.target.result+'" class="img-thumbnail" width="150px" height="120px" /> ');
+                      }
+                      reader.readAsDataURL(input.files[0]);
+                  }
+                  
+              }
+              $('#thum').on('click','#img', function(){
+                //alert("any")
+                 $("#id_image").click();
+                  })
+              $('#id_image').change(function(){
+                //alert(this)
+                $('#img').remove()
+                filePreview(this);
+              })
+ })
+</script>
+
+{%endblock object-tools%}

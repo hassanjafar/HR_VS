@@ -123,6 +123,7 @@ class PersonnelAdmin(ImportExportModelAdmin):
         'date'
     )
     actions=[save_to_device, ]
+    add_form_template='admin/id_app/personnel/add/change_form.html'
 
     pass
 class PositionAdmin(ImportExportModelAdmin):
